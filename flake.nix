@@ -91,13 +91,8 @@
           ExecPaths=-${packages.littleweb}/bin/littleweb
           PrivateUsers=true
           
-          InaccessiblePaths=-/boot
-          InaccessiblePaths=-/lost+found
           InaccessiblePaths=-/etc
-          InaccessiblePaths=-/home
           InaccessiblePaths=-/var
-          InaccessiblePaths=-/root
-          InaccessiblePaths=-/usr
           
           #CapabilityBoundingSet=CAP_NET_BIND_SERVICE
           CapabilityBoundingSet=
