@@ -37,9 +37,9 @@
             owner = "gfriloux";
             repo = "littleweb";
             rev = "v1.4.0";
-            sha256 = "sha256-d8RMawyFbYZdnaMmjZupLTibA5POW8HRr1NiXtZfpjo=";
+            sha256 = "sha256-Y2u2z/N73S5kJnsojNjY5OHTncZujyd8pLjcVSX/Cv4=";
           };
-          cargoHash = "sha256-DMAm9amtwhc33l0QqxN4B/H8YaB2m2YeO3b4C2uUHok=";
+          cargoHash = "sha256-B9iAE5ua1I7kIfX9tBnnp2ewAs4j5oD8ttQqeorF5Xo=";
         });
         website = pkgs.stdenv.mkDerivation rec {
           title = "retro-crt-startpage";
@@ -58,25 +58,13 @@
           '';
         };
 
-        links = pkgs.stdenv.mkDerivation rec {
-          title = "links";
-          description = "Links file";
-          name = "retro-startpage-links";
-          version = "1.0.0";
-          src = ./.;
-          installPhase = ''
-            mkdir -p $out
-            cp -r links.json $out/
-          '';
-        };
-
         unit = pkgs.writeText "retro-startpage.service" ''
           [Unit]
           After=network.target
           Description=Retro Bookmark Manager
           
           [Service]
-          ExecStart=${packages.littleweb}/bin/littleweb ${packages.website}/
+          ExecStart=${packages.littleweb}/bin/littleweb --host 127.0.0.1 --path ${packages.website}/
           Type=simple
           DynamicUser=yes
           
@@ -88,7 +76,7 @@
           pname = "retro-startpage";
           inherit ( packages.website ) version;
           units = [ packages.unit ];
-          contents = with pkgs; [ packages.website packages.links ];
+          contents = with pkgs; [ packages.website ];
           homepage = "https://github.com/gfriloux/retro-startpage";
         };
         oci-systemd-sbom = bombon.lib.${system}.buildBom packages.oci-systemd {
@@ -98,7 +86,7 @@
           name = "retro-startpage";
           tag = "latest";
           contents = with pkgs; [ packages.website ];
-          config.Cmd = ["${packages.littleweb}/bin/littleweb" "${packages.website}/"];
+          config.Cmd = ["${packages.littleweb}/bin/littleweb" "--host" "0.0.0.0" "--path" "${packages.website}/"];
           uid = 1000;
           gid = 1000;
         };
