@@ -32,11 +32,11 @@
       packages = {
         littleweb = pkgs.rustPlatform.buildRustPackage (finalAttrs: {
           pname = "littleweb";
-          version = "1.3.0";
+          version = "1.4.0";
           src = pkgs.fetchFromGitHub {
             owner = "gfriloux";
             repo = "littleweb";
-            rev = "main";
+            rev = "v1.4.0";
             sha256 = "sha256-d8RMawyFbYZdnaMmjZupLTibA5POW8HRr1NiXtZfpjo=";
           };
           cargoHash = "sha256-DMAm9amtwhc33l0QqxN4B/H8YaB2m2YeO3b4C2uUHok=";
