@@ -67,6 +67,53 @@
           ExecStart=${packages.littleweb}/bin/littleweb --host 127.0.0.1 --path ${packages.website}/
           Type=simple
           DynamicUser=yes
+
+          PrivateTmp=true
+          NoNewPrivileges=true
+          PrivateDevices=true
+          DevicePolicy=closed
+          ProtectSystem=strict
+          ProtectControlGroups=true
+          ProtectKernelModules=true
+          ProtectKernelTunables=true
+          ProtectProc=invisible
+          RestrictNamespaces=true
+          RestrictRealtime=true
+          RestrictSUIDSGID=true
+          MemoryDenyWriteExecute=true
+          LockPersonality=true
+          ProtectClock=true
+          ProtectHostname=true
+          ProtectHome=true
+          ProtectKernelLogs=true
+          ReadOnlyPaths=/
+          NoExecPaths=/
+          ExecPaths=-${packages.littleweb}/bin/littleweb
+          PrivateUsers=true
+          
+          InaccessiblePaths=-/boot
+          InaccessiblePaths=-/lost+found
+          InaccessiblePaths=-/etc
+          InaccessiblePaths=-/home
+          InaccessiblePaths=-/var
+          InaccessiblePaths=-/root
+          InaccessiblePaths=-/usr
+          
+          #CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+          CapabilityBoundingSet=
+          RestrictAddressFamilies=AF_INET AF_INET6
+          
+          SystemCallFilter=~@clock
+          SystemCallFilter=~@cpu-emulation
+          SystemCallFilter=~@debug
+          SystemCallFilter=~@module
+          SystemCallFilter=~@mount
+          SystemCallFilter=~@obsolete
+          SystemCallFilter=~@privileged
+          SystemCallFilter=~@raw-io
+          SystemCallFilter=~@reboot
+          SystemCallFilter=~@resources
+          SystemCallFilter=~@swap
           
           [Install]
           WantedBy=multi-user.target
