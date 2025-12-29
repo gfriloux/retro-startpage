@@ -128,7 +128,6 @@
         oci-docker = pkgs.dockerTools.buildLayeredImage {
           name = "retro-startpage";
           tag = "latest";
-          contents = with pkgs; [ packages.website ];
           config.Cmd = ["${packages.littleweb}/bin/littleweb" "--host" "0.0.0.0" "--path" "${packages.website}/"];
           uid = 1000;
           gid = 1000;
