@@ -128,9 +128,10 @@
         oci-docker = pkgs.dockerTools.buildLayeredImage {
           name = "retro-startpage";
           tag = "latest";
-          config.Cmd = ["${packages.littleweb}/bin/littleweb" "--host" "0.0.0.0" "--path" "${packages.website}/"];
-          uid = 1000;
-          gid = 1000;
+          config = {
+            Cmd = ["${packages.littleweb}/bin/littleweb" "--host" "0.0.0.0" "--path" "${packages.website}/"];
+            User = "1000:1000";
+          };
         };
         oci-docker-sbom = bombon.lib.${system}.buildBom packages.oci-docker {
           extraPaths = [ ];
