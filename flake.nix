@@ -49,6 +49,7 @@
           src = pkgs.fetchzip {
             url = "https://github.com/scar45/retro-crt-startpage/releases/download/v1.3.1/retro-crt-startpage-v1.3.1-release.zip";
             hash = "sha256-UmYyfEy2BVMavAdEqlEYNT5A6dPXuxViAZ18n1fxCfc=";
+            stripRoot = false;
           };
           nativebuildInputs = [ pkgs.zip ];
           installPhase = ''
