@@ -23,5 +23,8 @@
       alias = {
         packages.default = "startpage-portable";
       };
+      checks = {
+      	retro-startpage-vm = ./checks/vm/default.nix;
+      };
     };
 }
