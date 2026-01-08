@@ -8,28 +8,32 @@ service of the wonderful [retro startpage](https://github.com/scar45/retro-crt-s
 ### Portable service
 
 ```
-nix build .#oci-systemd
+nix build .#startpage-portable
 ```
 
 You should now have the image into the `result/` dir:
 ```
-.r--r--r-- root root   4.9 MB Thu Jan  1 01:00:01 1970  retro-startpage_1.3.1.raw
+.r--r--r-- root root   4.9 MB Thu Jan  1 01:00:01 1970  startpage-portable_1.0.0.raw
 ```
 
 You can now install it:
 ```
-sudo portablectl reattach --profile trusted --enable --now result/retro-startpage_*.raw
+sudo portablectl attach --profile trusted --enable --now result/startpage-portable_*.raw
+```
+or
+```
+sudo portablectl reattach --profile trusted --enable --now result/startpage-portable_*.raw
 ```
 
 ### Docker
 
 ```
-nix build .#oci-docker
+nix build .#startpage-docker
 docker load <result
 ```
 
 You should now have the image:
 ```
-IMAGE                    ID             DISK USAGE   CONTENT SIZE   EXTRA
-retro-startpage:latest   b18b4631ad9e       12.7MB             0B    U
+IMAGE                     ID             DISK USAGE   CONTENT SIZE   EXTRA
+startpage-docker:latest   2d4751cc460c       13.2MB             0B    U
 ```
