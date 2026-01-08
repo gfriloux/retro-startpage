@@ -4,7 +4,7 @@ pkgs.dockerTools.buildLayeredImage {
   name = "startpage-docker";
   tag = "latest";
   config = {
-    Cmd = ["${packages.littleweb}/bin/littleweb" "--host" "0.0.0.0" "--path" "${packages.website}/"];
+    Cmd = ["${pkgs.${namespace}.littleweb}/bin/littleweb" "--host" "0.0.0.0" "--path" "${pkgs.${namespace}.website}/"];
     User = "1000:1000";
   };
-};
+}
