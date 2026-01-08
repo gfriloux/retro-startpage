@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 
-pkgs.rustPlatform.buildRustPackage (finalAttrs: {
+pkgs.pkgsStatic.rustPlatform.buildRustPackage (finalAttrs: {
   pname = "littleweb";
   version = "1.4.0";
   src = pkgs.fetchFromGitHub {
